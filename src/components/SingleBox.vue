@@ -37,6 +37,7 @@ export default {
                 this.$set(this.box, i, false)
             }
             this.count = 0;
+            this.$parent.cal();
         }
     }
 }
