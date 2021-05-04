@@ -1,8 +1,8 @@
 <template>
-    <div id="choosebox" @click="logout">
-        <ul class="boxul">
+    <div id="choosebox">
+        <ul class="boxul" @click="setActive">
             <li :key="index" v-for="(item,index) in box" >
-                <div class="content" v-bind:class="{active: box[index]}" @click="setActive(index)">
+                <div class="content" v-bind:class="{active: box[index]}" >
                     {{index+1}}
                 </div>
             </li>
@@ -21,13 +21,22 @@ export default {
         }
     },
     methods:{
-        logout () {
-            // console.log(this.$route);
+        // 事件委托
+        setActive () {
+            // console.log(event.target.nodeName, Number(event.target.innerHTML));
+            let index = Number(event.target.innerHTML) - 1;
+            if(event.target.nodeName == 'DIV') {
+                this.$set(this.box,index,!this.box[index])
+                this.box[index] === true ? this.count++ : this.count--;
+                this.$emit('calculate'); 
+
+            }
         },
-        setActive (index) {
-            this.$set(this.box,index,!this.box[index])
-            this.box[index] === true ? this.count++ : this.count--;
-            this.$emit('calculate');       
+        reset() {
+            for (let i = 0; i < this.box.length; i++) {
+                this.$set(this.box, i, false)
+            }
+            this.count = 0;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <span class="dustbin">X</span>
+        <span class="dustbin" @click="reset()">X</span>
         <span class="calculation">
             合计{{count}}注，共{{money}}元
         </span>
@@ -16,6 +16,11 @@ export default {
         return {
             // count : 0,
             // money : 0
+        }
+    },
+    methods : {
+        reset () {
+            this.$emit('reset')
         }
     }
 }

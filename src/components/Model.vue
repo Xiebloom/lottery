@@ -3,7 +3,7 @@
         <SingleBox :ballsNum="ballNum1" ref="box1" @calculate="cal()"></SingleBox>
         <hr @click="test()" >
         <SingleBox :ballsNum="ballNum2" class="box2" ref="box2" @calculate="cal()"></SingleBox>
-        <Footer :money="money" :count="count"></Footer>
+        <Footer :money="money" :count="count" @reset="reset()"></Footer>
     </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
         test () {
         },
         cal () {
-            console.log(this.$refs.box1.count,this.$refs.box2.count);
+            // console.log(this.$refs.box1.count,this.$refs.box2.count);
             // 一注都没有
             if (this.$refs.box1.count < this.redLimit || this.$refs.box2.count < this.blueLimit) {
                 this.count = 0;
@@ -49,19 +49,24 @@ export default {
                 while (count1 > this.redLimit) {
                     res *= count1--;
                     res /= devider++;
-                    console.log(res)
+                    // console.log(res)
                 }
                 devider = 1;
                 while(count2 > this.blueLimit){
                     res *= count2--;
                     res /= devider++;
-                    console.log(res)
+                    // console.log(res)
                 }  
                 this.count = res;
                 this.money = 2 * res;
                 // count = this.$refs.box1.count
             }
-        }  
+        },
+        reset () {
+            console.log('reset');
+            this.$refs.box1.reset()
+            this.$refs.box2.reset()
+        }
     },
 }
 </script>

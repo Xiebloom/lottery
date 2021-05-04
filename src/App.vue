@@ -51,6 +51,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  border: 3px black solid;
+  min-width: 300px;
 }
 
 #nav {
