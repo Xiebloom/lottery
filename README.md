@@ -1,4 +1,4 @@
-# tencenthomework5.1
+# Lottery
 
 ## Project setup
 ```
